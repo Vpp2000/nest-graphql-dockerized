@@ -35,11 +35,11 @@ jobs:
         echo "Fin del login. Version -------------> $NEW_VERSION <---------------"
     - name: Build Docker image
       run: |
-        docker build -t vpp97/docker-graphql:$NEW_VERSION .
+        docker build -t vpp97/docker-graphql:${{ steps.version.outputs.version }} .
         docker build -t vpp97/docker-graphql:latest .
     - name: Push Docker image
       run: |
-        docker push vpp97/docker-graphql:$NEW_VERSION
+        docker push vpp97/docker-graphql:${{ steps.version.outputs.version }}
         docker push vpp97/docker-graphql:latest
 #    - name: Build the Docker image for dev purposes
 #      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
